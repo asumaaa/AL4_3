@@ -78,11 +78,13 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(solutionSir)DirectXTex;$(IncludePath);</IncludePath>
+    <IncludePath>$(solutionSir)DirectXTex;C:\Program Files\2020.3.2\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Program Files\2020.3.2\lib\vs2019\x64\debug;C:\Program Files\2020.3.2\lib\vs2019\x64\release;C:\Program Files\2020.3.2\lib\vs2019\x86\debug;C:\Program Files\2020.3.2\lib\vs2019\x86\release;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(solutionSir)DirectXTex;$(IncludePath);</IncludePath>
+    <IncludePath>$(solutionSir)DirectXTex;C:\Program Files\2020.3.2\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Program Files\2020.3.2\lib\vs2019\x64\debug;C:\Program Files\2020.3.2\lib\vs2019\x64\release;C:\Program Files\2020.3.2\lib\vs2019\x86\debug;C:\Program Files\2020.3.2\lib\vs2019\x86\release;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -119,10 +121,12 @@
       <PreprocessorDefinitions>_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(projectDir)input;$(projectDir);$(projectDir)3D;$(projectDir)base;$(projectDir)imgui;$(projectDir)math;$(projectDir)scene;$(projectDir)player;$(projectDir)enemy;$(projectDir)effect;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>libfbxsdk-md.lib;libxml2-md.lib;zlib-md.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -134,12 +138,14 @@
       <PreprocessorDefinitions>NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(projectDir)input;$(projectDir);$(projectDir)3D;$(projectDir)base;$(projectDir)imgui;$(projectDir)math;$(projectDir)scene;$(projectDir)player;$(projectDir)enemy;$(projectDir)effect;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>libfbxsdk-md.lib;libxml2-md.lib;zlib-md.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
