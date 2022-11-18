@@ -32,7 +32,7 @@ void Player::Initialize(ID3D12Device* device,Model* model, DXInput* dxInput)
 void Player::Update(XMMATRIX& matView, XMMATRIX& matProjection)
 {
 
-	Move();
+	/*Move();*/
 
 	object3d_->setScale(scale_);
 	object3d_->setRotation(rotation2_);

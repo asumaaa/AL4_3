@@ -26,7 +26,7 @@ void GameScene::Initialize(DirectXCommon* dxCommon, Input* input)
 
 	//“G‚Ìƒ‚ƒfƒ‹‰Šú‰»
 	Model* newEnemyModel = new Model();
-	newEnemyModel->Initialize(dxCommon_->GetDevice(), "enemy", "Resources/enemy.png");
+	newEnemyModel->Initialize(dxCommon_->GetDevice(), "boss", "Resources/boss.png");
 	enemyModel_.reset(newEnemyModel);
 
 	//’e‚Ìƒ‚ƒfƒ‹‚Ì‰Šú‰»
@@ -37,7 +37,7 @@ void GameScene::Initialize(DirectXCommon* dxCommon, Input* input)
 
 	//“G‚Ì’e‚Ìƒ‚ƒfƒ‹‚Ì‰Šú‰»
 	Model* newEnemyBulletModel = new Model();
-	newEnemyBulletModel->Initialize(dxCommon_->GetDevice(), "bullet", "Resources/enemyBullet.png");
+	newEnemyBulletModel->Initialize(dxCommon_->GetDevice(), "enemyBullet", "Resources/enemyBullet.png");
 	enemyBulletModel_.reset(newEnemyBulletModel);
 
 	//¯‹û‚Ìƒ‚ƒfƒ‹‚Ì‰Šú‰»
