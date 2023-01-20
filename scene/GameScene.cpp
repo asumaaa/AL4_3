@@ -87,10 +87,6 @@ void GameScene::Update()
 	XMFLOAT3 up_(0,1,0);
 	XMMATRIX matView = XMMatrixLookAtLH(XMLoadFloat3(&eye_), XMLoadFloat3(&target_), XMLoadFloat3(&up_));*/
 
-	//当たり判定更新
-	EnmeyCollition();
-	PlayerCollition();
-
 	//プレイヤー更新
 	player_->Update(matView, matProjection);
 
@@ -102,41 +98,6 @@ void GameScene::Update()
 
 	//敵更新
 	enemy_->Update(matView, matProjection);
-	
-
-	//プレイヤーから受け取ったフラグで弾生成
-	if (player_->Attack() == 1)
-	{
-		std::unique_ptr<PlayerBullet> newBullet = std::make_unique<PlayerBullet>();
-		newBullet->Initialize(dxCommon_->GetDevice(), bulletModel_.get(), player_->GetPosition(), player_->GetVelocity());
-		playerBullet_.push_back(std::move(newBullet));
-	}
-	//プレイヤーの弾更新
-	for (std::unique_ptr<PlayerBullet>& bullet : playerBullet_)
-	{
-		bullet->Update(matView, matProjection);
-	}
-	//デスフラグの立った弾を削除
-	playerBullet_.remove_if([](std::unique_ptr<PlayerBullet>& bullet)
-		{return bullet->IsDead(); }
-	);
-
-	//敵から受け取ったフラグで弾生成
-	if (enemy_->Attack() == 1)
-	{
-		std::unique_ptr<EnemyBullet> newBullet = std::make_unique<EnemyBullet>();
-		newBullet->Initialize(dxCommon_->GetDevice(), enemyBulletModel_.get(), enemy_->GetPosition(), player_->GetVelocity());
-		enemyBullet_.push_back(std::move(newBullet));
-	}
-	//敵の弾更新
-	for (std::unique_ptr<EnemyBullet>& bullet : enemyBullet_)
-	{
-		bullet->Update(matView, matProjection);
-	}
-	//デスフラグの立った弾を削除
-	enemyBullet_.remove_if([](std::unique_ptr<EnemyBullet>& bullet)
-		{return bullet->IsDead(); }
-	);
 
 	//エフェクト更新
 	for (std::unique_ptr<BreakEffect>& effect : breakEffect_)
@@ -168,43 +129,5 @@ void GameScene::Draw()
 	for (std::unique_ptr<BreakEffect>& effect : breakEffect_)
 	{
 		effect->Draw(dxCommon_->GetCommandList());
-	}
-}
-
-void GameScene::EnmeyCollition()
-{
-	//敵に弾が当たったら弾消滅 爆発エフェクト作成
-	for (std::unique_ptr<PlayerBullet>& bullet : playerBullet_)
-	{
-		float x = bullet->GetPosition().x - enemy_->GetPosition().x;
-		float y = bullet->GetPosition().y - enemy_->GetPosition().y;
-		float z = bullet->GetPosition().z - enemy_->GetPosition().z;
-		if ((x * x) + (y * y) + (z * z) <= 100)
-		{
-			std::unique_ptr<BreakEffect> newEffect = std::make_unique<BreakEffect>();
-			newEffect->Initialize(dxCommon_->GetDevice(), starDustModel_.get(), bullet->GetPosition());
-			breakEffect_.push_back(std::move(newEffect));
-
-			bullet->SetIsDeadTrue();
-		}
-	}
-}
-
-void GameScene::PlayerCollition()
-{
-	//敵に弾が当たったら弾消滅 爆発エフェクト作成
-	for (std::unique_ptr<EnemyBullet>& bullet : enemyBullet_)
-	{
-		float x = bullet->GetPosition().x - player_->GetPosition().x;
-		float y = bullet->GetPosition().y - player_->GetPosition().y;
-		float z = bullet->GetPosition().z - player_->GetPosition().z;
-		if ((x * x) + (y * y) + (z * z) <= 25)
-		{
-			std::unique_ptr<BreakEffect> newEffect = std::make_unique<BreakEffect>();
-			newEffect->Initialize(dxCommon_->GetDevice(), starDustModel_.get(), bullet->GetPosition());
-			breakEffect_.push_back(std::move(newEffect));
-
-			bullet->SetIsDeadTrue();
-		}
 	}
 }

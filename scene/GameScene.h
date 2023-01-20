@@ -29,10 +29,6 @@ public:
 	void Update();
 	void Draw();
 
-	//プレイヤーの弾と敵の当たり判定
-	void EnmeyCollition();
-	//敵の弾とプレイヤーの当たり判定
-	void PlayerCollition();
 	//メンバ変数
 private: 
 	//デバイスとinput
