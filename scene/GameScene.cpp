@@ -42,7 +42,7 @@ void GameScene::Initialize(DirectXCommon* dxCommon, Input* input)
 
 	//星屑のモデルの初期化
 	Model* newStarModel = new Model();
-	newStarModel->Initialize(dxCommon_->GetDevice(), "star", "Resources/star.png");
+	newStarModel->Initialize(dxCommon_->GetDevice(), "star", "Resources/star.png"); 
 	starDustModel_.reset(newStarModel);
 
 	//プレイヤー初期化
