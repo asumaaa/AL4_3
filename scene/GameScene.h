@@ -18,6 +18,7 @@
 #include "Sprite.h"
 #include "Enemy.h"
 #include "EnemyBullet.h"
+#include <fbxsdk.h>
 
 class GameScene
 {
@@ -28,11 +29,6 @@ public:
 	void Initialize(DirectXCommon* dxCommon, Input* input);
 	void Update();
 	void Draw();
-
-	//プレイヤーの弾と敵の当たり判定
-	void EnmeyCollition();
-	//敵の弾とプレイヤーの当たり判定
-	void PlayerCollition();
 	//メンバ変数
 private: 
 	//デバイスとinput
@@ -41,46 +37,7 @@ private:
 
 	//コントローラ
 	DXInput* dxInput = new DXInput();
-
-	//プレイヤーのモデル
-	std::unique_ptr<Model> playerModel_;
-
-	//プレイヤー
-	std::unique_ptr<Player> player_;
-
-	//プレイヤーの煙
-	std::unique_ptr<Smoke> smoke_;
-
-	//オブジェクト
-	std::unique_ptr<Object3D> object3Ds_;
-
-	//星屑のモデル
-	std::unique_ptr<Model> starDustModel_;
-
-	//星屑
-	std::unique_ptr<StarDust> starDust_;
-
+	
 	//カメラ
 	std::unique_ptr<Camera> camera_;
-
-	//弾のモデル
-	std::unique_ptr<Model> bulletModel_;
-
-	//弾
-	std::list<std::unique_ptr<PlayerBullet>> playerBullet_;
-
-	//爆発エフェクト
-	std::list<std::unique_ptr<BreakEffect>> breakEffect_;
-
-	//敵のモデル
-	std::unique_ptr<Model> enemyModel_;
-
-	//敵
-	std::unique_ptr<Enemy> enemy_;
-
-	//敵の弾のモデル
-	std::unique_ptr<Model> enemyBulletModel_;
-
-	//敵の弾
-	std::list<std::unique_ptr<EnemyBullet>> enemyBullet_;
 };

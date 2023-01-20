@@ -16,12 +16,14 @@ Camera::~Camera()
 {
 }
 
-void Camera::Initialize(Input* input, DXInput* dxInput,Player* player)
+void Camera::Initialize(Input* input, DXInput* dxInput, XMFLOAT3 pos)
 {
 	//引数から受け取ったデータを代入
 	this->input_ = input;
 	this->dxInput_ = dxInput;
-	this->player_ = player;
+	this->eye_ = pos;
+	target_ = { 0,0,0 };
+	up_ = { 0,1,0 };
 
 	//射影変換
 	 matProjection_ = XMMatrixPerspectiveFovLH(
@@ -37,7 +39,7 @@ void Camera::Initialize(Input* input, DXInput* dxInput,Player* player)
 
 void Camera::Update()
 {
-	homind();
+	/*homind();*/
 	//行列計算
 	matView_ = XMMatrixLookAtLH(XMLoadFloat3(&eye_), XMLoadFloat3(&target_), XMLoadFloat3(&up_));
 }

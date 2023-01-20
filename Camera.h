@@ -15,7 +15,7 @@ public:
 	Camera();
 	~Camera();
 	//初期化
-	void Initialize(Input* input, DXInput* dxInput,Player* player);
+	void Initialize(Input* input, DXInput* dxInput,XMFLOAT3 pos);
 	//更新
 	void Update();
 	//プレイヤーの後ろをつける挙動

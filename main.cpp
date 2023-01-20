@@ -1,14 +1,9 @@
 #include "main.h"
 #include "FPS.h"
 #include "DXInput.h"
-#include <fbxsdk.h>
 
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 {
-	fbxsdk::FbxManager* fbx_manager = fbxsdk::FbxManager::Create();
-
-	fbx_manager->Destroy();
-
 	//ウィンドウ生成
 	WinApp* win = nullptr;
 	win = WinApp::GetInstance();
